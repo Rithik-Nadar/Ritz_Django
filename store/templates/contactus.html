@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="background1">
+    <div class="container">
+        <div class="screen">
+            <div class="screen-body">
+                <div class="screen-body-item left">
+                    <div class="app-title">
+                        <span>CONTACT</span>
+                        <span>US</span>
+                    </div>
+                    <div class="app-contact">CONTACT INFO : +62 81 314 928 595</div>
+                </div>
+                <form action="{% url 'contactus' %}" method="post">
+                    {% csrf_token %}
+                    <div class="screen-body-item">
+                        <div class="app-form">
+                            <div class="app-form-group">
+                                <input type="text" name="custname" class="app-form-control" placeholder="NAME">
+                            </div>
+                            <div class="app-form-group">
+                                <input type="email" name="email" class="app-form-control" placeholder="EMAIL"
+                                    style="text-transform:lowercase">
+                            </div>
+                            <div class=" app-form-group">
+                                <input type="text" name="contact" class="app-form-control" placeholder="CONTACT NO"
+                                    style="text-transform:lowercase">
+                            </div>
+                            <div class="app-form-group message">
+                                <input type="text" name="message" class="app-form-control" placeholder="MESSAGE"
+                                    style="text-transform:lowercase">
+                            </div>
+                            <div class="app-form-group buttons">
+                                <input type="Submit">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
