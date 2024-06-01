@@ -33,13 +33,15 @@ pipeline{
         steps{
         echo "deploying the container"
             sh "docker-compose down && docker-compose up -d"
-            stage('Checkout') {
+        }
+      }
+                stage('Checkout') {
               steps {
                   git branch: 'main', url: 'git@github.com:Rithik-Nadar/Ritz_Django.git'
                   stash includes: '**/*', name: 'source'
               }
             }
-    stage('Checkov') {
+            stage('Checkov') {
                 steps {
                     withCredentials([string(credentialsId: 'PC_USER', variable: 'pc_user'),string(credentialsId: 'PC_PASSWORD', variable: 'pc_password')]) {
                         script {
@@ -57,8 +59,10 @@ pipeline{
                     }
                 }
             }
-
         }
-      }
+        options {
+            preserveStashes()
+            timestamps()
+        }
     }
-}
+
